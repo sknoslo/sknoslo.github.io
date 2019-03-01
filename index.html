@@ -1,15 +1,43 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Steffen Olson Dot Dev</title>
-    <style>
-        body {
-            font-size: 4px;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <title>Steffen Olson Dot Dev</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: cornsilk;
+      color: darkred;
+      font-size: 16px;
+      font-family: 'Courier New', Courier, monospace;
+    }
+
+    #loading {
+      word-wrap: break-word;
+      max-width: 100vw;
+    }
+  </style>
 </head>
 <body>
-    nothing to see here
+  <div id="loading">LOADING</div>
+  <script>
+    const loadingTextNode = document.getElementById("loading").firstChild;
+
+    let dots = 0;
+    let forward = true;
+
+    setInterval(() => {
+      if (forward && dots < 1000) {
+        loadingTextNode.nodeValue = `${loadingTextNode.nodeValue}.`;
+        dots++;
+      } else if (!forward && dots > 0) {
+        loadingTextNode.nodeValue = loadingTextNode.nodeValue.slice(0, -1);
+        dots--;
+      } else {
+        forward = !forward;
+      }
+    }, 500);
+  </script>
 </body>
 </html>
